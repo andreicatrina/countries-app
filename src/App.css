@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+span,
+p,
+a,
+div,
+button,
+h1,
+h2,
+h3 {
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  /* darkMode */
+  --darkBlue: hsl(209, 23%, 22%);
+  --veryDarkBlue: hsl(207, 26%, 17%);
+  --white: hsl(0, 0%, 100%);
+  /* lightMode */
+  --darkBlueLight: hsl(200, 15%, 8%);
+  --darkGrayLigh: hsl(0, 0%, 52%);
+  --lightGray: hsl(0, 0%, 98%);
+}
