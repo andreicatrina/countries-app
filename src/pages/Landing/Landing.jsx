@@ -5,9 +5,8 @@ import { LandingSection } from "../../components/LandingSection/LandingSection";
 
 export const Landing = () => {
   return (
-    <PageLayout>
-      <Header />
+    <>
       <LandingSection />
-    </PageLayout>
+    </>
   );
 };

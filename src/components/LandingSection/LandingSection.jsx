@@ -16,8 +16,10 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { FaSearch } from "react-icons/fa";
 
-export const LandingSection = () => {
-  const [countries, setCountries] = useState();
+export const LandingSection = (props) => {
+  const [countries, setCountries] = useState([]);
+  const [countries2, setCountries2] = useState([]);
+  const [openCard, setOpenCard] = useState(false);
 
   useEffect(() => {
     getCountries();
@@ -28,12 +30,53 @@ export const LandingSection = () => {
   const getCountries = async function () {
     try {
       const response = await axios.get(api);
-      console.log(response.data);
+      // console.log(response.data);
       setCountries(response.data);
+      setCountries2(response.data);
     } catch (error) {
       console.log(error);
     }
   };
+
+  function onClickOpenCard() {
+    if (openCard === true) {
+      setOpenCard(false);
+    } else {
+      setOpenCard(true);
+    }
+  }
+
+  function onChangeFilterCountry(e) {
+    console.log(e.target.value);
+    if (e.target.value === "Europe") {
+      let filteredCountries = countries.filter((country) => {
+        return country.region === "Europe";
+      });
+      console.log(filteredCountries);
+      setCountries2(filteredCountries);
+    } else if (e.target.value === "Asia") {
+      let filteredCountries = countries.filter((country) => {
+        return country.region === "Asia";
+      });
+      console.log(filteredCountries);
+      setCountries2(filteredCountries);
+    } else if (e.target.value === "Africa") {
+      let filteredCountries = countries.filter((country) => {
+        return country.region === "Africa";
+      });
+      console.log(filteredCountries);
+      setCountries2(filteredCountries);
+    } else if (e.target.value === "America") {
+      let filteredCountries = countries.filter((country) => {
+        return country.region === "Americas";
+      });
+      console.log(filteredCountries);
+      setCountries2(filteredCountries);
+    } else if (e.target.value === "All") {
+      console.log(countries);
+      setCountries2(countries);
+    }
+  }
 
   return (
     <Section>
@@ -44,8 +87,9 @@ export const LandingSection = () => {
             <input type="search" />
           </SearchContainer>
           <FilterContainer>
-            <select name="" id="">
-              <option value="Filter by Region">Filter by Region</option>
+            <label htmlFor="">Filter by Region</label>
+            <select onChange={onChangeFilterCountry} name="" id="">
+              <option value="All">All</option>
               <option value="Africa">Africa</option>
               <option value="Asia">Asia</option>
               <option value="Europe">Europe</option>
@@ -54,19 +98,23 @@ export const LandingSection = () => {
           </FilterContainer>
         </FilterSearchContainer>
         <CountriesContainer>
-          {countries.map((country) => {
+          {countries2.map((country) => {
             return (
-              <CardContainer>
+              <CardContainer onClick={onClickOpenCard}>
                 <FlagContainer>
                   <img src={country.flags.svg} alt="" />
                 </FlagContainer>
-                <CountryDetailContainer>
-                  <span>{country.name.common}</span>
-                  <span>{`Capital: ${country.capital}`}</span>
-                  <span>{`Population: ${country.population}`}</span>
-                  <span>{`Region: ${country.region}`}</span>
-                  <span>{`Subregion: ${country.subregion}`}</span>
-                </CountryDetailContainer>
+                {openCard ? (
+                  <CountryDetailContainer>
+                    <span>{country.name.common}</span>
+                    <span>{`Capital: ${country.capital}`}</span>
+                    <span>{`Population: ${country.population}`}</span>
+                    <span>{`Region: ${country.region}`}</span>
+                    <span>{`Subregion: ${country.subregion}`}</span>
+                  </CountryDetailContainer>
+                ) : (
+                  <IoIosArrowDown />
+                )}
               </CardContainer>
             );
           })}

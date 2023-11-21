@@ -50,6 +50,14 @@ export const SearchContainer = styled.div`
 `;
 
 export const FilterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  label {
+    font-size: 18px;
+    color: var(--white);
+  }
   select {
     background-color: var(--darkBlue);
     background-position: right 10px center;
@@ -90,11 +98,20 @@ export const CountriesContainer = styled.div`
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   gap: 18px;
   width: 100%;
   max-width: 280px;
   background-color: var(--darkBlue);
   border-radius: 8px;
+  padding-bottom: 8px;
+
+  svg {
+    margin: 0 auto;
+
+    color: white;
+  }
 `;
 
 export const FlagContainer = styled.div`

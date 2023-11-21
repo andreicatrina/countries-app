@@ -6,6 +6,7 @@ import { LandingSection } from "../../components/LandingSection/LandingSection";
 export const PageLayout = (props) => {
   return (
     <Container>
+      <Header />
       <Content>{props.children}</Content>
     </Container>
   );
