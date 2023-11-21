@@ -72,6 +72,18 @@ export const LandingSection = (props) => {
       });
       console.log(filteredCountries);
       setCountries2(filteredCountries);
+    } else if (e.target.value === "Oceania") {
+      let filteredCountries = countries.filter((country) => {
+        return country.region === "Oceania";
+      });
+      console.log(filteredCountries);
+      setCountries2(filteredCountries);
+    } else if (e.target.value === "Antarctic") {
+      let filteredCountries = countries.filter((country) => {
+        return country.region === "Antarctic";
+      });
+      console.log(filteredCountries);
+      setCountries2(filteredCountries);
     } else if (e.target.value === "All") {
       console.log(countries);
       setCountries2(countries);
@@ -94,6 +106,8 @@ export const LandingSection = (props) => {
               <option value="Asia">Asia</option>
               <option value="Europe">Europe</option>
               <option value="America">America</option>
+              <option value="Oceania">Oceania</option>
+              <option value="Antarctic">Antarctic</option>
             </select>
           </FilterContainer>
         </FilterSearchContainer>
