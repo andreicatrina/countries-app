@@ -42,6 +42,16 @@ export const SearchContainer = styled.div`
     outline: none;
   }
 
+  button {
+    background-color: var(--darkBlue);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 600;
+    border: 1px solid var(--white);
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
   svg {
     width: 16px;
     height: 16px;
@@ -95,6 +105,13 @@ export const CountriesContainer = styled.div`
   padding-top: 40px;
 `;
 
+export const SearchParentContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 24px;
+  padding-top: 40px;
+`;
+
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -102,20 +119,21 @@ export const CardContainer = styled.div`
   justify-content: space-between;
   gap: 18px;
   width: 100%;
-  max-width: 280px;
+  /* max-width: 280px; */
   background-color: var(--darkBlue);
   border-radius: 8px;
   padding-bottom: 8px;
 
   svg {
     margin: 0 auto;
-
     color: white;
   }
 `;
 
 export const FlagContainer = styled.div`
+  display: flex;
   width: 100%;
+  height: 100%;
   max-height: 160px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;

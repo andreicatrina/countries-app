@@ -10,6 +10,7 @@ import {
   FlagContainer,
   LandingContainer,
   SearchContainer,
+  SearchParentContainer,
   Section,
 } from "./components";
 
@@ -20,6 +21,7 @@ export const LandingSection = (props) => {
   const [countries, setCountries] = useState([]);
   const [countries2, setCountries2] = useState([]);
   const [openCard, setOpenCard] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     getCountries();
@@ -90,13 +92,19 @@ export const LandingSection = (props) => {
     }
   }
 
+  function onChangeSearch(e) {
+    console.log(e.currentTarget.value);
+    setSearch(e.currentTarget.value);
+  }
+
   return (
     <Section>
       <LandingContainer>
         <FilterSearchContainer>
           <SearchContainer>
             <FaSearch />
-            <input type="search" />
+            <input onChange={onChangeSearch} type="search" />
+            <button>Search</button>
           </SearchContainer>
           <FilterContainer>
             <label htmlFor="">Filter by Region</label>
@@ -111,28 +119,55 @@ export const LandingSection = (props) => {
             </select>
           </FilterContainer>
         </FilterSearchContainer>
-        <CountriesContainer>
-          {countries2.map((country) => {
-            return (
-              <CardContainer onClick={onClickOpenCard}>
-                <FlagContainer>
-                  <img src={country.flags.svg} alt="" />
-                </FlagContainer>
-                {openCard ? (
-                  <CountryDetailContainer>
-                    <span>{country.name.common}</span>
-                    <span>{`Capital: ${country.capital}`}</span>
-                    <span>{`Population: ${country.population}`}</span>
-                    <span>{`Region: ${country.region}`}</span>
-                    <span>{`Subregion: ${country.subregion}`}</span>
-                  </CountryDetailContainer>
-                ) : (
-                  <IoIosArrowDown />
-                )}
-              </CardContainer>
-            );
-          })}
-        </CountriesContainer>
+        {search === "" ? (
+          <CountriesContainer>
+            {countries2.map((country) => {
+              return (
+                <CardContainer onClick={onClickOpenCard}>
+                  <FlagContainer>
+                    <img src={country.flags.svg} alt="" />
+                  </FlagContainer>
+                  {openCard ? (
+                    <CountryDetailContainer>
+                      <span>{country.name.common}</span>
+                      <span>{`Capital: ${country.capital}`}</span>
+                      <span>{`Population: ${country.population}`}</span>
+                      <span>{`Region: ${country.region}`}</span>
+                      <span>{`Subregion: ${country.subregion}`}</span>
+                    </CountryDetailContainer>
+                  ) : (
+                    <IoIosArrowDown />
+                  )}
+                </CardContainer>
+              );
+            })}
+          </CountriesContainer>
+        ) : (
+          <SearchParentContainer>
+            {countries.map((country) => {
+              if (country.name.common === search) {
+                return (
+                  <CardContainer onClick={onClickOpenCard}>
+                    <FlagContainer>
+                      <img src={country.flags.svg} alt="" />
+                    </FlagContainer>
+                    {openCard ? (
+                      <CountryDetailContainer>
+                        <span>{country.name.common}</span>
+                        <span>{`Capital: ${country.capital}`}</span>
+                        <span>{`Population: ${country.population}`}</span>
+                        <span>{`Region: ${country.region}`}</span>
+                        <span>{`Subregion: ${country.subregion}`}</span>
+                      </CountryDetailContainer>
+                    ) : (
+                      <IoIosArrowDown />
+                    )}
+                  </CardContainer>
+                );
+              }
+            })}
+          </SearchParentContainer>
+        )}
       </LandingContainer>
     </Section>
   );
