@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const HeaderSection = styled.header`
   width: 100%;
-  background-color: var(--darkBlue);
+  background-color: ${(props) => props.background};
 `;
 export const HeaderContainer = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const TitleContainer = styled.div`
   h2 {
     font-size: 24px;
     font-weight: 600;
-    color: var(--white);
+    color: ${(props) => props.color};
   }
 `;
 
@@ -28,10 +28,11 @@ export const DarkModeContainer = styled.div`
   gap: 6px;
 
   svg {
-    color: var(--white);
+    color: ${(props) => props.color};
   }
+`;
 
-  span {
-    color: var(--white);
-  }
+export const DarkModeText = styled.span`
+  color: ${(props) => props.color};
+  cursor: pointer;
 `;
