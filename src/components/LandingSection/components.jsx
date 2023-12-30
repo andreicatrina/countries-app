@@ -156,3 +156,8 @@ export const CountryDetailContainer = styled.div`
     color: var(--white);
   }
 `;
+
+// export const CardParent = styled.div`
+//   width: 100%;
+//   height: 100%;
+// `;
